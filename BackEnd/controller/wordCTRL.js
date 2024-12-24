@@ -56,9 +56,21 @@ const deleteWord = expressAsyncHandler(async(req,res)=>{
 const updateWord = expressAsyncHandler(async(req,res)=>{
     const {id} = req.params;
     try{    
-        const newQery = `UPDATE baseWord SET translation='nozimaxon' WHERE id = ${id}`;
+        console.log(id);
+        
+        const newQery = `UPDATE baseWord SET translation='${req.body.translation}',word='${req.body.word}' WHERE id = '${id}'`;
         const queryResult = await pool.query(newQery);
         res.send("success").status(200);
+    }catch(err){
+        console.log(err);
+    }
+})
+
+
+const getQuiz = expressAsyncHandler(async(req,res)=>{
+    const { limit , units} = req.body;
+    try{
+        const newQuery = `Selec`;
     }catch(err){
         console.log(err);
     }
@@ -68,5 +80,6 @@ module.exports = {
     findWord,
     createNewWord,
     deleteWord,
-    updateWord
+    updateWord,
+    getQuiz
 }
